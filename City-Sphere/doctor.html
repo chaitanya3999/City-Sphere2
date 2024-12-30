@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services-Doctor</title>
+    
+  </head>
+  <script></script>
+  <body>
+   <style>body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        text-align: center;
+        font-weight: bold;
+        color: #ff7a14;
+        font-size: 3rem;
+        font-weight: bold;
+        text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 2s ease-in-out;
+      }
+      
+      .bake {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        z-index: 99;
+      }
+      #home {
+        background: linear-gradient(to right, #ff7a14, #d44604);
+        border-color: #ff7a14;
+        color: #f2f2f2;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 5px;
+        cursor: pointer;
+        border-radius: 7px;
+        transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+        box-shadow: 0.3s ease;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+      }
+      #home:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(to right, #ff7a14, #d44604);
+        padding: 7px 20px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      .menu {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .menu li {
+        margin: 0 15px;
+      }
+      
+      .menu a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        position: relative;
+        font-size: 1.2rem;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+      }
+      .menu a:hover {
+        background-color: #555;
+        border-radius: 5px;
+        transform: scale(1.05);
+      }
+      
+      .menu a::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 3px;
+        background: white;
+        bottom: 0;
+        left: 0;
+        transition: width 0.3s ease;
+      }
+      
+      .menu a:hover::after {
+        width: 100%;
+      }
+      .menu a::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 3px;
+        background: white;
+        bottom: 0;
+        left: 0;
+        transition: width 0.3s ease;
+      }
+      
+      .menu a:hover::after {
+        width: 100%;
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        border-radius: 20px;
+        padding: 5px 10px;
+        margin-left: 20px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      
+      .search-bar input {
+        border: none;
+        outline: none;
+        padding: 8px;
+        font-size: 16px;
+        flex: 1; /* Makes the input take up remaining space */
+        border-radius: 10px;
+        margin-right: 10px;
+      }
+      
+      .search-bar button {
+        background: #ff7a14;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s ease;
+      }
+      
+      .search-bar button:hover {
+        background: #d44604;
+      }
+      @media (max-width: 768px) {
+        /* Stack the search bar elements vertically on smaller screens */
+        .search-bar {
+          flex-direction: column; /* Stack items vertically */
+          margin-left: 0; /* Remove left margin */
+          width: 100%; /* Make search bar take full width */
+          padding: 10px; /* Add more padding for smaller screens */
+        }
+      
+        .search-bar input {
+          margin-bottom: 10px; /* Add space between input and button */
+          width: 100%; /* Make input field take full width */
+        }
+      
+        .search-bar button {
+          width: 100%; /* Make button take full width */
+          margin-top: 10px; /* Add some space above the button */
+        }
+      
+        /* Adjust the nav menu to stack vertically on small screens */
+        .menu {
+          flex-direction: column;
+          margin-top: 20px; /* Add space above the menu items */
+        }
+      
+        .menu li {
+          margin: 10px 0; /* Adjust spacing between menu items */
+        }
+      }
+      form {
+        display: block !important;
+        align-items: center;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+      }
+      label {
+        display: flex;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      
+      form input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      textarea,
+      select {
+        width: 97%;
+        padding: 10px;
+        border: 1px solid #ff7a14;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+      }
+      form select {
+        padding: 10px;
+        border: 1px solid #ff7a14;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+      }
+      form input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: #d44604;
+        transform: scale(1.05);
+      }
+      form button {
+        background: linear-gradient(to right, #ff7a14, #d44604);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      form button:hover {
+        background: linear-gradient(to right, #d44604, #ff7a14);
+        color: white;
+        transition: background-color 0.3s ease;
+        transform: scale(1.05);
+      }
+      </style>
+    <h1>Doctor</h1>
+    <div class="bake">
+      <button id="home" onclick="redirectToHome()">Back</button>
+    </div>
+    <nav>
+      <!-- Menu Bar -->
+      <ul class="menu">
+       ><li><a href="#bydistance">By Distance</a></li>
+        <li><a href="#bytime">By Time</a></li>
+        <li><a href="#resent">Resent</a></li>
+      </ul>
+      <div class="search-bar">
+        <input type="text" placeholder="Search..." id="searchInput" />
+        <button onclick="searchFunction()">Search</button>
+      </div>
+    </nav>
+    <!-- Sections -->
+   <div id="bydistance"></div>
+   <section id="resent"></section>
+    <div class="container1">
+      <form action="" method="GET">
+        <label for="name">Name:</label><br />
+        <input type="text" id="name" name="name" required />
+        <br />
+        <label for="email">Email:</label><br />
+        <input type="email" id="email" name="email" required />
+        <br />
+        <label for="phone">Phone:</label><br />
+        <input type="tel" id="phone" name="phone" required />
+        <br />
+        <label for="address">Address:</label><br />
+        <input type="text" id="address" name="address" required />
+        <br />
+        <label for="mode of list">Select mode to give list:</label><br />
+        <select id="mode" name="mode">
+          <option value="">Select a desiese</option>
+          <option value="General physican">General physican</option>
+          <option value="Skin & hair">Skin & hair</option>
+          <option value="Women's health">Women's health</option>
+          <option value="Dental care">Dental care</option>
+          <option value="Ear,Nose,Thorate">Ear,Nose,Thorate</option>
+          <option value="Child specialist">Child specialist</option>
+          <option value="Mental wellness">Mental wellness</option>
+          <option value="Bones & joints">Bones & joints</option>
+          <option value="Heart">Heart</option>
+          <option value="Cancer">Cancer</option>
+          <option value="Ayurveda">Ayurveda</option>
+          <option value="Physiotherapy">Physiotherapy</option>
+          <option value="Brain & Nerves">Brain & Nerves</option>
+          <option value="Diabetes">Diabetes</option>
+          <option value="Homoeopath">Homoeopath</option>
+        </select>
+        <br />
+        <div class="paragraph" hidden>
+          <div id="give-in-text">
+            <label for="paragraph">paragraph:</label>
+            <textarea
+              id="paragraph"
+              name="paragarph"
+              placeholder="Type Your symptoms here"
+            ></textarea>
+          </div>
+          <div id="upload-list">
+            <label for="file">Select a file:</label>
+            <input
+              type="file"
+              id="file"
+              name="file"
+              accept=".csv,.txt,.pdf,.doc,.jpg,jpeg,.png"
+            />
+            <br />
+            <button onclick="uploadFile()">Upload</button>
+          </div>
+          <div id="select-here">
+            <label for="select">Select here</label>
+            <select id="select" name="select">
+              <!-- Options dynamically generated -->
+            </select>
+          </div>
+        </div>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    </body>
+</html>
