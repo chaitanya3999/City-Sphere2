@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro Ticket Booking - City Sphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="services.css">
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="logo-container">
+                    <div class="logo-circle">
+                        <img src="../City Sphere Final copy.png" alt="City Sphere Logo" class="logo-image">
+                    </div>
+                    <div class="logo-text">
+                        <h1>City Sphere</h1>
+                        <p class="tagline">My City in My Phone</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <ul class="nav-links">
+                        <li><a href="../index.html#services"><i class="fas fa-cogs"></i>Services</a></li>
+                        <li><a href="../index.html#features"><i class="fas fa-star"></i>Features</a></li>
+                        <li><a href="../about.html"><i class="fas fa-users"></i>About Us</a></li>
+                        <li><a href="../contact.html"><i class="fas fa-envelope"></i>Contact</a></li>
+                    </ul>
+                    <div class="nav-buttons">
+                        <a href="../login.html" class="btn btn-login"><i class="fas fa-user"></i>Login</a>
+                        <a href="../signup.html" class="btn btn-signup">Sign Up<i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="service-page">
+        <section class="service-hero">
+            <div class="container">
+                <h1>Metro Ticket Booking</h1>
+                <p>Quick and easy metro tickets for your daily commute</p>
+            </div>
+        </section>
+
+        <section class="metro-options">
+            <div class="container">
+                <div class="ticket-types">
+                    <div class="ticket-option" onclick="selectTicketType('single')">
+                        <i class="fas fa-ticket-alt"></i>
+                        <h3>Single Journey</h3>
+                        <p>One-way ticket for immediate use</p>
+                    </div>
+                    <div class="ticket-option" onclick="selectTicketType('return')">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h3>Return Journey</h3>
+                        <p>Same day return ticket</p>
+                    </div>
+                    <div class="ticket-option" onclick="selectTicketType('pass')">
+                        <i class="fas fa-id-card"></i>
+                        <h3>Travel Pass</h3>
+                        <p>Daily, weekly, or monthly passes</p>
+                    </div>
+                    <div class="ticket-option" onclick="selectTicketType('group')">
+                        <i class="fas fa-users"></i>
+                        <h3>Group Ticket</h3>
+                        <p>For groups of 4 or more</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="booking-form">
+            <div class="container">
+                <form id="metroBookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fromStation">From Station</label>
+                            <select id="fromStation" required>
+                                <option value="">Select Station</option>
+                                <!-- Stations will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="toStation">To Station</label>
+                            <select id="toStation" required>
+                                <option value="">Select Station</option>
+                                <!-- Stations will be populated by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="singleJourneyFields" class="ticket-fields">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="journeyDate">Journey Date</label>
+                                <input type="date" id="journeyDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="passengers">Number of Passengers</label>
+                                <select id="passengers" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="passFields" class="ticket-fields" style="display: none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="passType">Pass Type</label>
+                                <select id="passType" required>
+                                    <option value="daily">Daily Pass (₹150)</option>
+                                    <option value="weekly">Weekly Pass (₹400)</option>
+                                    <option value="monthly">Monthly Pass (₹1400)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate">Start Date</label>
+                                <input type="date" id="startDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="groupFields" class="ticket-fields" style="display: none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="groupSize">Group Size</label>
+                                <select id="groupSize">
+                                    <option value="4">4 People</option>
+                                    <option value="5">5 People</option>
+                                    <option value="6">6 People</option>
+                                    <option value="7">7 People</option>
+                                    <option value="8">8 People</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="groupType">Group Type</label>
+                                <select id="groupType">
+                                    <option value="regular">Regular Group</option>
+                                    <option value="student">Student Group (10% off)</option>
+                                    <option value="senior">Senior Citizen Group (15% off)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fare-estimate" id="fareEstimate">
+                        <!-- Fare will be displayed here -->
+                    </div>
+
+                    <button type="submit" class="btn btn-book">Proceed to Payment</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="metro-map">
+            <div class="container">
+                <h2>Metro Network Map</h2>
+                <div class="map-container">
+                    <img src="../assets/metro-map.png" alt="Metro Network Map" class="metro-map-image">
+                    <button class="btn btn-map" onclick="openFullMap()">View Full Map</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>City Sphere</h3>
+                    <p>Making city life simpler and more convenient through digital solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html#services">Services</a></li>
+                        <li><a href="../index.html#features">Features</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Sphere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../auth.js"></script>
+    <script src="metro-booking.js"></script>
+</body>
+</html>

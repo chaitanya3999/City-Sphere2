@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking - City Sphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="services.css">
+    <style>
+        .flight-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .flight-option {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .flight-option:hover, .flight-option.active {
+            border-color: #6366f1;
+            background: #f3f4f6;
+        }
+
+        .flight-option i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #6366f1;
+        }
+
+        .booking-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .flight-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .flight-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .airline-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .airline-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .time-info {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .departure, .arrival {
+            text-align: center;
+        }
+
+        .duration {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #6b7280;
+        }
+
+        .duration .line {
+            width: 100px;
+            height: 2px;
+            background: #e5e7eb;
+            position: relative;
+        }
+
+        .duration .line::before,
+        .duration .line::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #6b7280;
+            border-radius: 50%;
+            top: -3px;
+        }
+
+        .duration .line::before {
+            left: 0;
+        }
+
+        .duration .line::after {
+            right: 0;
+        }
+
+        .price-section {
+            text-align: right;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6366f1;
+            margin-bottom: 0.5rem;
+        }
+
+        .seat-layout {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.5rem;
+            padding: 2rem;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+
+        .seat {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .seat.available:hover {
+            border-color: #6366f1;
+            background: #f3f4f6;
+        }
+
+        .seat.selected {
+            border-color: #6366f1;
+            background: #6366f1;
+            color: white;
+        }
+
+        .seat.booked {
+            border-color: #ef4444;
+            background: #fef2f2;
+            cursor: not-allowed;
+        }
+
+        .seat-types {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .seat-type {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .seat-type i {
+            font-size: 1rem;
+        }
+
+        .seat-type i.available {
+            color: #6b7280;
+        }
+
+        .seat-type i.selected {
+            color: #6366f1;
+        }
+
+        .seat-type i.booked {
+            color: #ef4444;
+        }
+
+        .meal-selection {
+            margin-top: 2rem;
+        }
+
+        .meal-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .meal-option {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .meal-option:hover {
+            border-color: #6366f1;
+        }
+
+        .meal-option.selected {
+            border-color: #6366f1;
+            background: #f3f4f6;
+        }
+
+        .meal-option img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .baggage-info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f3f4f6;
+            border-radius: 8px;
+        }
+
+        .extra-services {
+            margin-top: 2rem;
+        }
+
+        .service-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .service-option:hover {
+            border-color: #6366f1;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+            }
+
+            .flight-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .time-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .seat-layout {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="logo-container">
+                    <div class="logo-circle">
+                        <img src="../City Sphere Final copy.png" alt="City Sphere Logo" class="logo-image">
+                    </div>
+                    <div class="logo-text">
+                        <h1>City Sphere</h1>
+                        <p class="tagline">My City in My Phone</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <ul class="nav-links">
+                        <li><a href="../index.html#services"><i class="fas fa-cogs"></i>Services</a></li>
+                        <li><a href="../index.html#features"><i class="fas fa-star"></i>Features</a></li>
+                        <li><a href="../about.html"><i class="fas fa-users"></i>About Us</a></li>
+                        <li><a href="../contact.html"><i class="fas fa-envelope"></i>Contact</a></li>
+                    </ul>
+                    <div class="nav-buttons">
+                        <a href="../wallet.html" class="btn btn-wallet"><i class="fas fa-wallet"></i>Wallet</a>
+                        <a href="../login.html" class="btn btn-login"><i class="fas fa-user"></i>Login</a>
+                        <a href="../signup.html" class="btn btn-signup">Sign Up<i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="service-page">
+        <section class="service-hero">
+            <div class="container">
+                <h1>Flight Booking</h1>
+                <p>Book your flights with comfort and convenience</p>
+            </div>
+        </section>
+
+        <section class="booking-section">
+            <div class="container">
+                <div class="flight-options">
+                    <div class="flight-option active" onclick="selectFlightType('oneway')">
+                        <i class="fas fa-plane"></i>
+                        <h3>One Way</h3>
+                    </div>
+                    <div class="flight-option" onclick="selectFlightType('roundtrip')">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h3>Round Trip</h3>
+                    </div>
+                    <div class="flight-option" onclick="selectFlightType('multicity')">
+                        <i class="fas fa-route"></i>
+                        <h3>Multi City</h3>
+                    </div>
+                </div>
+
+                <div class="booking-form">
+                    <form id="flightSearchForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fromCity">From</label>
+                                <input type="text" id="fromCity" required placeholder="Enter city or airport">
+                            </div>
+                            <div class="form-group">
+                                <label for="toCity">To</label>
+                                <input type="text" id="toCity" required placeholder="Enter city or airport">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="departureDate">Departure Date</label>
+                                <input type="date" id="departureDate" required>
+                            </div>
+                            <div class="form-group" id="returnDateGroup" style="display: none;">
+                                <label for="returnDate">Return Date</label>
+                                <input type="date" id="returnDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="passengers">Passengers</label>
+                                <select id="passengers" required>
+                                    <option value="1">1 Adult</option>
+                                    <option value="2">2 Adults</option>
+                                    <option value="3">3 Adults</option>
+                                    <option value="4">4 Adults</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="class">Class</label>
+                                <select id="class" required>
+                                    <option value="economy">Economy</option>
+                                    <option value="premium">Premium Economy</option>
+                                    <option value="business">Business</option>
+                                    <option value="first">First Class</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-search">Search Flights</button>
+                    </form>
+                </div>
+
+                <div id="flightResults" style="display: none;">
+                    <h2>Available Flights</h2>
+                    <div class="results-grid" id="resultsGrid">
+                        <!-- Flight results will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flight Selection Modal -->
+        <div class="modal" id="flightModal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Complete Your Booking</h2>
+                
+                <div class="booking-steps">
+                    <div class="step active" id="seatStep">
+                        <h3>1. Select Seats</h3>
+                        <div class="seat-layout" id="seatLayout">
+                            <!-- Seats will be dynamically generated -->
+                        </div>
+                        <div class="seat-info">
+                            <div class="seat-types">
+                                <span class="seat-type"><i class="fas fa-square available"></i> Available</span>
+                                <span class="seat-type"><i class="fas fa-square selected"></i> Selected</span>
+                                <span class="seat-type"><i class="fas fa-square booked"></i> Booked</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step" id="mealStep">
+                        <h3>2. Select Meal Preference</h3>
+                        <div class="meal-options">
+                            <div class="meal-option" onclick="selectMeal(this, 'veg')">
+                                <img src="../assets/meals/veg-meal.jpg" alt="Vegetarian Meal">
+                                <h4>Vegetarian Meal</h4>
+                                <p>Fresh and healthy vegetarian options</p>
+                                <p class="price">+₹350</p>
+                            </div>
+                            <div class="meal-option" onclick="selectMeal(this, 'nonveg')">
+                                <img src="../assets/meals/non-veg-meal.jpg" alt="Non-Vegetarian Meal">
+                                <h4>Non-Vegetarian Meal</h4>
+                                <p>Delicious non-vegetarian options</p>
+                                <p class="price">+₹400</p>
+                            </div>
+                            <div class="meal-option" onclick="selectMeal(this, 'special')">
+                                <img src="../assets/meals/special-meal.jpg" alt="Special Meal">
+                                <h4>Special Diet Meal</h4>
+                                <p>Gluten-free, low-calorie options</p>
+                                <p class="price">+₹450</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step" id="extraStep">
+                        <h3>3. Extra Services</h3>
+                        <div class="baggage-info">
+                            <h4>Baggage Allowance</h4>
+                            <p>Cabin: 7 kg | Check-in: 15 kg</p>
+                        </div>
+                        <div class="extra-services">
+                            <div class="service-option">
+                                <div>
+                                    <h4>Extra Baggage</h4>
+                                    <p>Add 5kg extra check-in baggage</p>
+                                </div>
+                                <div>
+                                    <p class="price">+₹750</p>
+                                    <input type="checkbox" id="extraBaggage">
+                                </div>
+                            </div>
+                            <div class="service-option">
+                                <div>
+                                    <h4>Priority Boarding</h4>
+                                    <p>Board first and settle in comfortably</p>
+                                </div>
+                                <div>
+                                    <p class="price">+₹400</p>
+                                    <input type="checkbox" id="priorityBoarding">
+                                </div>
+                            </div>
+                            <div class="service-option">
+                                <div>
+                                    <h4>Travel Insurance</h4>
+                                    <p>Comprehensive travel protection</p>
+                                </div>
+                                <div>
+                                    <p class="price">+₹249</p>
+                                    <input type="checkbox" id="travelInsurance">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-summary">
+                    <h3>Booking Summary</h3>
+                    <div id="bookingSummary">
+                        <!-- Summary will be dynamically updated -->
+                    </div>
+                </div>
+
+                <button class="btn btn-proceed" onclick="proceedToPayment()">Proceed to Payment</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>City Sphere</h3>
+                    <p>Making city life simpler and more convenient through digital solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html#services">Services</a></li>
+                        <li><a href="../index.html#features">Features</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Sphere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../auth.js"></script>
+    <script src="flight-booking.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Groceries - City Sphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="services.css">
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="logo-container">
+                    <div class="logo-circle">
+                        <img src="../City Sphere Final copy.png" alt="City Sphere Logo" class="logo-image">
+                    </div>
+                    <div class="logo-text">
+                        <h1>City Sphere</h1>
+                        <p class="tagline">My City in My Phone</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <ul class="nav-links">
+                        <li><a href="../index.html#services"><i class="fas fa-cogs"></i>Services</a></li>
+                        <li><a href="../index.html#features"><i class="fas fa-star"></i>Features</a></li>
+                        <li><a href="../index.html#how-it-works"><i class="fas fa-info-circle"></i>How It Works</a></li>
+                        <li><a href="../about.html"><i class="fas fa-users"></i>About Us</a></li>
+                        <li><a href="../contact.html"><i class="fas fa-envelope"></i>Contact</a></li>
+                    </ul>
+                    <div class="nav-buttons">
+                        <a href="../login.html" class="btn btn-login"><i class="fas fa-user"></i>Login</a>
+                        <a href="../signup.html" class="btn btn-signup">Sign Up<i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="service-page">
+        <section class="service-hero">
+            <div class="container">
+                <h1>Online Groceries</h1>
+                <p>Fresh groceries delivered to your doorstep</p>
+            </div>
+        </section>
+
+        <section class="search-filters">
+            <div class="container">
+                <div class="search-bar">
+                    <input type="text" id="grocerySearch" placeholder="Search for groceries...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filters">
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="fruits">Fruits & Vegetables</option>
+                        <option value="dairy">Dairy & Eggs</option>
+                        <option value="bakery">Bakery</option>
+                        <option value="meat">Meat & Seafood</option>
+                        <option value="pantry">Pantry</option>
+                        <option value="beverages">Beverages</option>
+                    </select>
+                    <select id="sortFilter">
+                        <option value="recommended">Recommended</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                    <select id="availabilityFilter">
+                        <option value="">All Items</option>
+                        <option value="in-stock">In Stock</option>
+                        <option value="deals">Special Deals</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <div class="floating-cart">
+            <button id="cartButton" class="cart-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </button>
+        </div>
+
+        <section class="products-list">
+            <div class="container">
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be dynamically added here -->
+                </div>
+                <div class="loading-spinner" id="loadingSpinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </div>
+        </section>
+
+        <div class="cart-modal" id="cartModal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Shopping Cart</h2>
+                <div id="cartItems">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+                <div class="cart-summary">
+                    <div class="subtotal">
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal">$0.00</span>
+                    </div>
+                    <div class="delivery">
+                        <span>Delivery:</span>
+                        <span id="deliveryFee">$5.00</span>
+                    </div>
+                    <div class="total">
+                        <span>Total:</span>
+                        <span id="cartTotal">$0.00</span>
+                    </div>
+                </div>
+                <button id="checkoutBtn" class="btn btn-submit">
+                    Proceed to Checkout
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>City Sphere</h3>
+                    <p>Making city life simpler and more convenient through digital solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html#services">Services</a></li>
+                        <li><a href="../index.html#features">Features</a></li>
+                        <li><a href="../index.html#how-it-works">How It Works</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Sphere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../auth.js"></script>
+    <script src="groceries.js"></script>
+</body>
+</html>

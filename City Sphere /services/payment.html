@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - City Sphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="services.css">
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="logo-container">
+                    <div class="logo-circle">
+                        <img src="../City Sphere Final copy.png" alt="City Sphere Logo" class="logo-image">
+                    </div>
+                    <div class="logo-text">
+                        <h1>City Sphere</h1>
+                        <p class="tagline">My City in My Phone</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <ul class="nav-links">
+                        <li><a href="../index.html#services"><i class="fas fa-cogs"></i>Services</a></li>
+                        <li><a href="../index.html#features"><i class="fas fa-star"></i>Features</a></li>
+                        <li><a href="../about.html"><i class="fas fa-users"></i>About Us</a></li>
+                        <li><a href="../contact.html"><i class="fas fa-envelope"></i>Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="service-page">
+        <section class="payment-section">
+            <div class="container">
+                <div class="payment-wrapper">
+                    <div class="booking-summary">
+                        <h2>Booking Summary</h2>
+                        <div id="bookingSummary">
+                            <!-- Booking details will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="payment-methods">
+                        <h2>Select Payment Method</h2>
+                        <div class="payment-options">
+                            <div class="payment-option" onclick="selectPaymentMethod('upi')">
+                                <i class="fas fa-mobile-alt"></i>
+                                <h3>UPI</h3>
+                                <p>Pay using any UPI app</p>
+                            </div>
+                            <div class="payment-option" onclick="selectPaymentMethod('card')">
+                                <i class="fas fa-credit-card"></i>
+                                <h3>Card</h3>
+                                <p>Credit/Debit Card</p>
+                            </div>
+                            <div class="payment-option" onclick="selectPaymentMethod('netbanking')">
+                                <i class="fas fa-university"></i>
+                                <h3>Net Banking</h3>
+                                <p>All major banks</p>
+                            </div>
+                            <div class="payment-option" onclick="selectPaymentMethod('wallet')">
+                                <i class="fas fa-wallet"></i>
+                                <h3>Wallet</h3>
+                                <p>Mobile wallets</p>
+                            </div>
+                        </div>
+
+                        <!-- UPI Payment Form -->
+                        <form id="upiForm" class="payment-form" style="display: none;">
+                            <div class="form-group">
+                                <label for="upiId">UPI ID</label>
+                                <input type="text" id="upiId" placeholder="Enter your UPI ID" required>
+                            </div>
+                            <button type="submit" class="btn btn-pay">Pay Now</button>
+                        </form>
+
+                        <!-- Card Payment Form -->
+                        <form id="cardForm" class="payment-form" style="display: none;">
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expiryDate">Expiry Date</label>
+                                    <input type="text" id="expiryDate" placeholder="MM/YY" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="password" id="cvv" placeholder="123" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardName">Name on Card</label>
+                                <input type="text" id="cardName" placeholder="Enter name as on card" required>
+                            </div>
+                            <button type="submit" class="btn btn-pay">Pay Now</button>
+                        </form>
+
+                        <!-- Net Banking Form -->
+                        <form id="netbankingForm" class="payment-form" style="display: none;">
+                            <div class="form-group">
+                                <label for="bank">Select Bank</label>
+                                <select id="bank" required>
+                                    <option value="">Choose your bank</option>
+                                    <option value="sbi">State Bank of India</option>
+                                    <option value="hdfc">HDFC Bank</option>
+                                    <option value="icici">ICICI Bank</option>
+                                    <option value="axis">Axis Bank</option>
+                                    <option value="kotak">Kotak Mahindra Bank</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-pay">Proceed to Bank</button>
+                        </form>
+
+                        <!-- Wallet Form -->
+                        <form id="walletForm" class="payment-form" style="display: none;">
+                            <div class="form-group">
+                                <label for="wallet">Select Wallet</label>
+                                <select id="wallet" required>
+                                    <option value="">Choose your wallet</option>
+                                    <option value="paytm">Paytm</option>
+                                    <option value="phonepe">PhonePe</option>
+                                    <option value="amazonpay">Amazon Pay</option>
+                                    <option value="mobikwik">MobiKwik</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-pay">Pay with Wallet</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>City Sphere</h3>
+                    <p>Making city life simpler and more convenient through digital solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html#services">Services</a></li>
+                        <li><a href="../index.html#features">Features</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Sphere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../auth.js"></script>
+    <script src="payment.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Booking - City Sphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="services.css">
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="logo-container">
+                    <div class="logo-circle">
+                        <img src="../City Sphere Final copy.png" alt="City Sphere Logo" class="logo-image">
+                    </div>
+                    <div class="logo-text">
+                        <h1>City Sphere</h1>
+                        <p class="tagline">My City in My Phone</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <ul class="nav-links">
+                        <li><a href="../index.html#services"><i class="fas fa-cogs"></i>Services</a></li>
+                        <li><a href="../index.html#features"><i class="fas fa-star"></i>Features</a></li>
+                        <li><a href="../about.html"><i class="fas fa-users"></i>About Us</a></li>
+                        <li><a href="../contact.html"><i class="fas fa-envelope"></i>Contact</a></li>
+                    </ul>
+                    <div class="nav-buttons">
+                        <a href="../login.html" class="btn btn-login"><i class="fas fa-user"></i>Login</a>
+                        <a href="../signup.html" class="btn btn-signup">Sign Up<i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="service-page">
+        <section class="service-hero">
+            <div class="container">
+                <h1>Bus Ticket Booking</h1>
+                <p>Book your bus tickets easily and securely</p>
+            </div>
+        </section>
+
+        <section class="booking-form">
+            <div class="container">
+                <form id="busBookingForm">
+                    <div class="form-group">
+                        <label for="fromCity">From</label>
+                        <input type="text" id="fromCity" required placeholder="Enter departure city">
+                    </div>
+                    <div class="form-group">
+                        <label for="toCity">To</label>
+                        <input type="text" id="toCity" required placeholder="Enter destination city">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="departureDate">Departure Date</label>
+                            <input type="date" id="departureDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passengers">Passengers</label>
+                            <select id="passengers" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-search">Search Buses</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="bus-results" id="busResults" style="display: none;">
+            <div class="container">
+                <h2>Available Buses</h2>
+                <div class="results-grid" id="resultsGrid">
+                    <!-- Bus results will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seat Selection Modal -->
+        <div class="modal" id="seatModal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Select Your Seats</h2>
+                <div class="seat-layout">
+                    <div class="bus-layout" id="busLayout">
+                        <!-- Seat layout will be dynamically generated -->
+                    </div>
+                </div>
+                <div class="seat-info">
+                    <div class="seat-types">
+                        <span class="seat-type"><i class="fas fa-square available"></i> Available</span>
+                        <span class="seat-type"><i class="fas fa-square selected"></i> Selected</span>
+                        <span class="seat-type"><i class="fas fa-square booked"></i> Booked</span>
+                    </div>
+                    <div class="selected-seats">
+                        <p>Selected Seats: <span id="selectedSeatsText">None</span></p>
+                        <p>Total Amount: ₹<span id="totalAmount">0</span></p>
+                    </div>
+                </div>
+                <button class="btn btn-proceed" id="proceedToPayment">Proceed to Payment</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>City Sphere</h3>
+                    <p>Making city life simpler and more convenient through digital solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html#services">Services</a></li>
+                        <li><a href="../index.html#features">Features</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Sphere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../auth.js"></script>
+    <script src="bus-booking.js"></script>
+</body>
+</html>
